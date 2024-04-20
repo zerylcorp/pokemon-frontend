@@ -15,13 +15,13 @@ export const setSelectedPokemon = (payload) => {
   return { type: SET_POKEMON_SELECTED, payload };
 };
 
-export const allPokemon = () => {
+export const allPokemon = ({ limit, offset }) => {
   return (dispatch) => {
     dispatch(setLoading(true));
     dispatch(setError(null));
     axios({
       method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/api/v3/pokemon?limit=15&offset=0`,
+      url: `${process.env.REACT_APP_API_URL}/api/v3/pokemon?limit=${limit}&offset=${offset}`,
     })
       .then(({ data }) => {
         if (data) {
