@@ -40,7 +40,7 @@ export const catchPokemon = (id) => {
     axios({
       method: "POST",
       url: `${process.env.REACT_APP_API_URL}/api/v3/pokemon/catch?pokemonId=${id}`,
-      headers: { access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbmFzIiwiaWF0IjoxNzEzNTA3MTU5fQ.Fk7iuhf6HcgN8imwv4-vMHcGUI1HSWaFVcOdR_xcFmM" },
+      headers: { access_token: localStorage.getItem("access_token") },
     })
       .then(({ data }) => {
         if (data) {

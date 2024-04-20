@@ -29,6 +29,7 @@ function Navbar() {
   };
 
   const handleCloseUserMenu = () => {
+    localStorage.setItem("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbmFzIiwiaWF0IjoxNzEzNTA3MTU5fQ.Fk7iuhf6HcgN8imwv4-vMHcGUI1HSWaFVcOdR_xcFmM");
     setAnchorElUser(null);
   };
 
@@ -115,12 +116,7 @@ function Navbar() {
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography
-                  component="a"
-                  onClick={() => {
-                    navigate("/login");
-                  }}
-                  textAlign="center">
+                <Typography component="a" textAlign="center">
                   {localStorage.getItem("access_token") ? "Logout" : "Login"}
                 </Typography>
               </MenuItem>
