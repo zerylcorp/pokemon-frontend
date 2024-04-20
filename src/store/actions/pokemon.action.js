@@ -11,7 +11,7 @@ export const setError = (payload) => {
 export const setLoading = (payload) => {
   return { type: SET_POKEMON_LOADING, payload };
 };
-export const setSelectedProduct = (payload) => {
+export const setSelectedPokemon = (payload) => {
   return { type: SET_POKEMON_SELECTED, payload };
 };
 
@@ -21,11 +21,31 @@ export const allPokemon = () => {
     dispatch(setError(null));
     axios({
       method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/api/v3/pokemon?limit=50&offset=0`,
+      url: `${process.env.REACT_APP_API_URL}/api/v3/pokemon?limit=15&offset=0`,
     })
       .then(({ data }) => {
         if (data) {
           dispatch(setData(data));
+          dispatch(setLoading(false));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(setError("failed to get all data"));
+      });
+  };
+};
+export const detailsPokemon = (id) => {
+  return (dispatch) => {
+    dispatch(setLoading(true));
+    dispatch(setError(null));
+    axios({
+      method: "GET",
+      url: `${process.env.REACT_APP_API_URL}/api/v3/pokemon/detail/${id}`,
+    })
+      .then(({ data }) => {
+        if (data) {
+          dispatch(setSelectedPokemon(data.data));
           dispatch(setLoading(false));
         }
       })
@@ -49,7 +69,7 @@ export const catchPokemon = (id) => {
             case "Fail":
               toast.warn(`${message}`, {
                 position: "top-right",
-                autoClose: 1500,
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -62,7 +82,7 @@ export const catchPokemon = (id) => {
             default:
               toast.success(`${message}`, {
                 position: "top-right",
-                autoClose: 2000,
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,

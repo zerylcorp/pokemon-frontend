@@ -12,11 +12,14 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../store/actions/user.action";
 
 const pages = ["Pokemon"];
 
 function Navbar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -29,8 +32,16 @@ function Navbar() {
   };
 
   const handleCloseUserMenu = () => {
-    localStorage.setItem("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hbmFzIiwiaWF0IjoxNzEzNTA3MTU5fQ.Fk7iuhf6HcgN8imwv4-vMHcGUI1HSWaFVcOdR_xcFmM");
     setAnchorElUser(null);
+  };
+
+  const handleLoginUser = () => {
+    dispatch(
+      loginUser({
+        username: "nanas",
+        password: "112233",
+      })
+    );
   };
 
   const handleHomePage = () => {
@@ -105,21 +116,26 @@ function Navbar() {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}>
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography
-                  component="a"
-                  onClick={() => {
-                    navigate("/pokemon/my-list");
-                  }}
-                  textAlign="center">
-                  My Pokemon
-                </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography component="a" textAlign="center">
-                  {localStorage.getItem("access_token") ? "Logout" : "Login"}
-                </Typography>
-              </MenuItem>
+              {localStorage.getItem("access_token") && (
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography
+                    component="a"
+                    onClick={() => {
+                      navigate("/pokemon/my-list");
+                    }}
+                    textAlign="center">
+                    My Pokemon
+                  </Typography>
+                </MenuItem>
+              )}
+
+              {!localStorage.getItem("access_token") && (
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography onClick={handleLoginUser} component="a" textAlign="center">
+                    Login
+                  </Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
         </Toolbar>

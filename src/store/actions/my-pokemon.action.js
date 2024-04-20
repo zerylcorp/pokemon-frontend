@@ -11,7 +11,7 @@ export const setError = (payload) => {
 export const setLoading = (payload) => {
   return { type: SET_MY_POKEMON_LOADING, payload };
 };
-export const setSelectedProduct = (payload) => {
+export const setSelectedMyPokemon = (payload) => {
   return { type: SET_MY_POKEMON_SELECTED, payload };
 };
 
@@ -55,6 +55,8 @@ export const releasePokemon = (id) => {
                 autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: false,
+                closeButton: false,
+
                 pauseOnHover: false,
                 draggable: true,
                 progress: undefined,
@@ -67,6 +69,8 @@ export const releasePokemon = (id) => {
                 autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: false,
+                closeButton: false,
+
                 pauseOnHover: false,
                 draggable: true,
                 progress: undefined,
@@ -74,7 +78,7 @@ export const releasePokemon = (id) => {
               });
               setTimeout(() => {
                 dispatch(getAllMyPokemon());
-              }, 1500);
+              }, 500);
               break;
           }
         }
@@ -103,6 +107,7 @@ export const renamePokemon = (id) => {
                 autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: false,
+                closeButton: false,
                 pauseOnHover: false,
                 draggable: true,
                 progress: undefined,
@@ -115,6 +120,7 @@ export const renamePokemon = (id) => {
                 autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: false,
+                closeButton: false,
                 pauseOnHover: false,
                 draggable: true,
                 progress: undefined,
@@ -125,7 +131,7 @@ export const renamePokemon = (id) => {
         }
         setTimeout(() => {
           dispatch(getAllMyPokemon());
-        }, 1500);
+        }, 500);
       })
       .catch((err) => {
         console.log(err);

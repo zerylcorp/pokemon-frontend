@@ -8,8 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 const PokemonList = () => {
   const dispatch = useDispatch();
-  const { data, loading } = useSelector((state) => state.pokemonReducer);
   const [openToast, setOpenToast] = useState(false);
+  const { data, loading } = useSelector((state) => state.pokemonReducer);
 
   useEffect(() => {
     dispatch(allPokemon());
