@@ -14,7 +14,6 @@ import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
 import { useNavigate } from "react-router-dom";
 
 const pages = ["Pokemon"];
-const settings = ["My Pokemon", "Logout"];
 
 function Navbar() {
   const navigate = useNavigate();
@@ -48,7 +47,7 @@ function Navbar() {
             variant="h5"
             noWrap
             component="a"
-            href="/pokemon/list"
+            href="/pokemon"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -68,7 +67,7 @@ function Navbar() {
                 key={page}
                 onClick={handleCloseNavMenu}
                 component="a"
-                href="/pokemon/list"
+                href="/pokemon"
                 sx={{
                   mr: 2,
                   display: { xs: "flex" },
@@ -105,25 +104,26 @@ function Navbar() {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}>
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography
-                    component="a"
-                    onClick={() => {
-                      switch (setting) {
-                        case "My Pokemon":
-                          navigate("/pokemon/my-list");
-                          break;
-                        default:
-                          navigate("/login");
-                          break;
-                      }
-                    }}
-                    textAlign="center">
-                    {setting}
-                  </Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography
+                  component="a"
+                  onClick={() => {
+                    navigate("/pokemon/my-list");
+                  }}
+                  textAlign="center">
+                  My Pokemon
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography
+                  component="a"
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                  textAlign="center">
+                  {localStorage.getItem("access_token") ? "Logout" : "Login"}
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

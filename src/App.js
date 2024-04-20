@@ -11,7 +11,6 @@ function App() {
       <Navbar />
       <Routes>
         <Route index path="/pokemon" element={<PokemonList />} />
-        <Route path="/pokemon/list" element={<Details />} />
         <Route path="/pokemon/:id" element={<Details />} />
         <Route path="/pokemon/my-list" element={<MyPokemon />} />
         <Route path="/login" element={<Navbar />} />
