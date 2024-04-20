@@ -13,7 +13,7 @@ const PaginationComponent = ({ limit, offset, totalCount, onPageChange }) => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "end", margin: 20 }}>
+    <div style={{ display: "flex", justifyContent: "end", margin: 40 }}>
       <ButtonGroup color="primary" aria-label="pagination">
         <Button disabled={offset === 0} onClick={handlePrevPage}>
           <Typography variant="body2" style={{ alignSelf: "center" }} fontWeight={700}>

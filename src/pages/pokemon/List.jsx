@@ -36,7 +36,7 @@ const PokemonList = () => {
               return (
                 <Box key={item.id}>
                   {openToast && <ToastContainer />}
-                  <ImageCard id={item.id} image={`${item.imageUrl}`} title={`${item.name}`} heightDesc={`Height: ${item.height}`} weightDesc={`Weight: ${item.weight}`} setOpenToast={setOpenToast} />
+                  <ImageCard id={item.id} image={`${item.imageUrl}`} title={`${item.name}`} heightDesc={`Tinggi: ${item.height}`} weightDesc={`Berat: ${item.weight}`} setOpenToast={setOpenToast} />
                 </Box>
               );
             })}
