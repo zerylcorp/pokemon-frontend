@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 const DetailsPokemon = ({ id, image, title, species, heightDesc, weightDesc, setOpenToast }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
   const handleCatchPokemon = (idx) => {
     dispatch(catchPokemon(idx));
     setOpenToast(true);
@@ -45,7 +44,7 @@ const DetailsPokemon = ({ id, image, title, species, heightDesc, weightDesc, set
             {weightDesc}
           </Typography>
           <Typography variant="body2" color="text.secondary" fontWeight={700}>
-            {species.name.charAt(0).toUpperCase() + species.name.slice(1)}
+            {title.charAt(0).toUpperCase() + title.slice(1)}
           </Typography>
         </Box>
         <Button onClick={handleBack} startIcon={<ArrowBack />} align="start"> 

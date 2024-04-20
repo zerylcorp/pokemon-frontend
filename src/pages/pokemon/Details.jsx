@@ -14,15 +14,14 @@ const Details = () => {
   useEffect(() => {
     dispatch(detailsPokemon(id));
   }, [dispatch, id]);
-  console.log(selected);
   return (
     <div>
       {openToast && <ToastContainer />}
       <DetailsPokemon
         species={selected.species}
         id={selected.id}
-        image={`${selected.imageUrl}`}
-        title={`${selected.name}`}
+        image={`${selected?.imageUrl}`}
+        title={`${selected?.name}`}
         heightDesc={`Height: ${selected.height}`}
         weightDesc={`Weight: ${selected.weight}`}
         setOpenToast={setOpenToast}
