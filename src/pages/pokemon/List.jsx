@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, CircularProgress, LinearProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import ImageCard from "../../components/ImageCard";
 import { useDispatch, useSelector } from "react-redux";
 import { allPokemon } from "../../store/actions/pokemon.action";
