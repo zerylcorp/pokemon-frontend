@@ -21,7 +21,7 @@ export const allPokemon = () => {
     dispatch(setError(null));
     axios({
       method: "GET",
-      url: `${process.env.REACT_APP_API_URL}/api/v3/pokemon?limit=15&offset=0`,
+      url: `${process.env.REACT_APP_API_URL}/api/v3/pokemon?limit=50&offset=0`,
     })
       .then(({ data }) => {
         if (data) {
@@ -51,8 +51,9 @@ export const catchPokemon = (id) => {
                 position: "top-right",
                 autoClose: 1500,
                 hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                closeButton: false,
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
@@ -63,8 +64,9 @@ export const catchPokemon = (id) => {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                closeButton: false,
                 draggable: true,
                 progress: undefined,
                 theme: "dark",

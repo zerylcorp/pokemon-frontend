@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, CardMedia, CardContent, Typography, Box, Tooltip, IconButton } from "@mui/material";
-import GradeIcon from "@mui/icons-material/Grade";
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useDispatch } from "react-redux";
 import { catchPokemon } from "../store/actions/pokemon.action";

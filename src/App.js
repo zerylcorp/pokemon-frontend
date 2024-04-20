@@ -13,8 +13,8 @@ function App() {
         <Route index path="/pokemon" element={<PokemonList />} />
         <Route path="/pokemon/:id" element={<Details />} />
         <Route path="/pokemon/my-list" element={<MyPokemon />} />
-        <Route path="/login" element={<Navbar />} />
-        <Route path="/register" element={<Navbar />} />
+        {/* <Route path="/login" element={<Login />} /> */}
+        {/* <Route path="/register" element={<Register />} /> */}
       </Routes>
       <Outlet />
     </Box>

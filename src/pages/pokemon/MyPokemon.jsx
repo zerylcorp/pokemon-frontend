@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Card, CircularProgress, CardMedia, CardContent, Typography, Tooltip, IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
-import { getAllMyPokemon } from "../../store/actions/my-pokemon.action";
-
+import { getAllMyPokemon, releasePokemon, renamePokemon } from "../../store/actions/my-pokemon.action";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const MyPokemon = () => {
   const dispatch = useDispatch();
   const { data, loading } = useSelector((state) => state.myPokemonReducer);
+  const [openToast, setOpenToast] = useState(false);
+
   const handleReleasePokemon = (idx) => {
-    console.log("klik release");
+    dispatch(releasePokemon(idx));
+    setOpenToast(true);
   };
   const handleRenamePokemon = (idx) => {
-    console.log("klik rename");
+    dispatch(renamePokemon(idx));
+    setOpenToast(true);
+
   };
 
   useEffect(() => {
@@ -30,6 +36,7 @@ const MyPokemon = () => {
           {data?.data?.map((item) => {
             return (
               <Box key={item.id}>
+                {openToast && <ToastContainer />}
                 <Card sx={{ maxWidth: 345 }}>
                   <CardMedia component="img" width="100" height="140" image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" alt="Pokemon" />
                   <CardContent>
@@ -39,7 +46,7 @@ const MyPokemon = () => {
                       </Typography>
 
                       <Tooltip title="Rename">
-                        <IconButton onClick={() => handleRenamePokemon()}>
+                        <IconButton onClick={() => handleRenamePokemon(item.pokemonId)}>
                           <DriveFileRenameOutlineIcon
                             sx={{
                               cursor: "pointer",
@@ -49,7 +56,7 @@ const MyPokemon = () => {
                         </IconButton>
                       </Tooltip>
                       <Tooltip title="Release">
-                        <IconButton onClick={() => handleReleasePokemon()}>
+                        <IconButton onClick={() => handleReleasePokemon(item.pokemonId)}>
                           <BookmarkRemoveIcon
                             sx={{
                               cursor: "pointer",
